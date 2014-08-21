@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>Media Example</title>
+        
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script> 
+        <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script> 
+        
+        <script type="text/javascript" charset="utf-8">
+            
+            $(document).ready(function() {
+                $.mobile.loading( 'show', { theme: "b", text: "", textonly: false});
+                // jQuery is properly loaded at this point
+                // so proceed to bind the Cordova's deviceready event
+                $(document).bind('deviceready', function() {
+                    
+                    
+                    // Now Cordova is loaded
+                    // its great JS API can be used to access low-level
+                    // features as accelerometer, contacts and so on
+                    
+                    var drums = new Media("http://149.3.138.125/uploads/samples/VFH1%20128BPM%20Flatbeat%20Kit%201.wav", onSuccess, onError);
+                    var drums2 = new Media("http://149.3.138.125/uploads/samples/VFH1%20128BPM%20Heavy%20Duty%20Kit%201.wav", onSuccess, onError);
+                    var melody = new Media("http://149.3.138.125/uploads/samples/VFH1%20128BPM%20Heavy%20Duty%20Melody%201.wav", onSuccess, onError);
+                    var melody2 = new Media("http://149.3.138.125/uploads/samples/VFH1%20128BPM%20Flatbeat%20Melody%201.wav", onSuccess, onError);
+                    var melody3 = new Media("http://149.3.138.125/uploads/samples/VFH1%20128BPM%20Dogde%20Melody%202.wav", onSuccess, onError);
+
+                    
+                   /* var PGLowLatencyAudio = window.plugins.LowLatencyAudio;
+             
+                    PGLowLatencyAudio.preloadAudio('drums', "VFH1 128BPM Heavy Duty Kit 1.wav", 1);
+                    PGLowLatencyAudio.preloadAudio('drums2', "VFH1 128BPM Flatbeat Kit 1.wav", 1);
+                    PGLowLatencyAudio.preloadAudio('melody', "VFH1 128BPM Heavy Duty Melody 1.wav", 1);
+                    PGLowLatencyAudio.preloadAudio('melody2', "VFH1 128BPM Dogde Melody 1.wav", 1);
+                    PGLowLatencyAudio.preloadAudio('melody3', "VFH2 128BPM The Deep Melody 1.wav", 1);
+                    PGLowLatencyAudio.preloadAudio('sfx1', "VFX1 Downlifter 009.wav", 1);
+                    PGLowLatencyAudio.preloadAudio('sfx2', "VFX1 Lazers 02.wav", 1);
+                    PGLowLatencyAudio.preloadAudio('sfx3', "VFX1 Lazers 10.wav", 1);
+                    */
+                    //PGLowLatencyAudio.loop('drums');
+                    //PGLowLatencyAudio.play('melody');  
+
+                    $("#stop").touchstart(function() {
+                        drums.stop();
+                        melody.stop();
+                        
+                    });
+                    
+                     $("#drum").touchstart(function() {
+                       drums.play();
+                    });
+                    
+                    $("#drum2").touchstart(function() {
+                        PGLowLatencyAudio.loop('drums2');
+                    });
+                    
+                    $("#melody").touchstart(function() {
+                        melody.play();
+                    });
+                    
+                    $("#melody2").touchstart(function() {
+                         melody2.play();
+                    });
+                     $("#melody3").touchstart(function() {
+                         melody3.play();
+                    });
+                    
+                     $("#sfx1").touchstart(function() {
+                        PGLowLatencyAudio.play('sfx1');
+                    });
+                     $("#sfx2").touchstart(function() {
+                        PGLowLatencyAudio.play('sfx2');
+                    });
+                     $("#sfx3").touchstart(function() {
+                        PGLowLatencyAudio.play('sfx3');
+                    });
+                    
+                    $("#stop_drum").touchstart(function() {
+                        drums.stop();
+                    });
+                    $("#stop_melody").touchstart(function() {
+                        melody.stop();
+                        melody2.stop();
+                        melody3.stop();
+                    });
+
+                    $("#play").touchstart(function() {
+                        
+                        
+                        setTimeout(function (event) {
+                            
+                            drums.setVolume('0.5');
+                            melody3.setVolume('0.0');
+                            melody.setVolume('0.0');
+                        },2500);
+                        
+                        
+                        
+                        track1 = setTimeout(function (event) {
+
+                            //console.log('starting...');
+                            drums.play({ numberOfLoops: 10 });
+                            //drums2.play();
+                            //melody.play();
+                            //melody2.play();
+                           
+                            //PGLowLatencyAudio.loop('drums');
+                            //PGLowLatencyAudio.loop('melody');
+                            //PGLowLatencyAudio.loop('melody2');
+                            //PGLowLatencyAudio.loop('melody3');
+                            //PGLowLatencyAudio.loop('drums2');
+
+                            $('#textTobeSearched').text(text);
+                        }, 100);
+                        
+                        track2 = setTimeout(function (event) {
+
+                           melody3.play();
+                            //PGLowLatencyAudio.loop('drums');
+                            //PGLowLatencyAudio.loop('melody');
+                            //PGLowLatencyAudio.loop('melody2');
+                            //PGLowLatencyAudio.loop('melody3');
+                            //PGLowLatencyAudio.loop('drums2');
+
+                            $('#textTobeSearched').text(text);
+                        }, 100);
+                        
+                        track3 = setTimeout(function (event) {
+
+                           melody.play();
+                            //PGLowLatencyAudio.loop('drums');
+                            //PGLowLatencyAudio.loop('melody');
+                            //PGLowLatencyAudio.loop('melody2');
+                            //PGLowLatencyAudio.loop('melody3');
+                            //PGLowLatencyAudio.loop('drums2');
+
+                            $('#textTobeSearched').text(text);
+                        }, 100);
+                        
+                        
+                        
+                        
+    });
+                        
+                        $("#play2").touchstart(function() {
+                        
+                        timer = setTimeout(function (event) {
+                            
+                            drums.play();
+                            melody2.play()
+
+                            //console.log('starting...');
+                            //PGLowLatencyAudio.loop('drums');
+                            //PGLowLatencyAudio.loop('melody');
+                           // PGLowLatencyAudio.loop('melody2');
+                            //PGLowLatencyAudio.loop('melody3');
+                           // PGLowLatencyAudio.loop('drums2');
+
+                            $('#textTobeSearched').text(text);
+                        }, 100);
+                        
+                        });
+                        
+                         $("#play3").touchstart(function() {
+                        
+                        
+                            
+                            drums2.play();
+                            melody3.play()
+
+                            //console.log('starting...');
+                            //PGLowLatencyAudio.loop('drums');
+                            //PGLowLatencyAudio.loop('melody');
+                           // PGLowLatencyAudio.loop('melody2');
+                            //PGLowLatencyAudio.loop('melody3');
+                           // PGLowLatencyAudio.loop('drums2');
+
+                            $('#textTobeSearched').text(text);
+                      
+                        
+                        
+                    });
+                
+                
+
+               function onSuccess() {
+                    console.log("playAudio():Audio Success");
+                }
+
+                // onError Callback
+                //
+                function onError(error) {
+                    alert('code: '    + error.code    + '\n' +
+                          'message: ' + error.message + '\n');
+                }
+
+
+            });
+ });
+        </script>
+    </head>
+    <body>
+    <style> a { font-family:Arial;line-height:45px; padding-left:10px; text-decoration:none; font-size:20px; border:1px solid #ddd; border-radius: 4px; width:250px; height:40px; display:block; margin-top:0px; }</style>
+   
+    <a href="#" class="btn large" id="play">Drum, Mel 1, 2 & 3s</a><br>
+    <a href="#" class="btn large" id="play2">Drum, Melody2</a><br>
+    <a href="#" class="btn large" id="play3">drum2 & melody3</a><br>
+    <a href="#" class="btn large" id="drum">Play Drums</a><br>
+    <a href="#" class="btn large" id="drum2">Play Drums 2</a><br>
+    <a href="#" class="btn large" id="melody">Play Melody</a><br>
+    <a href="#" class="btn large" id="melody2">Play Melody 2</a><br>
+    <a href="#" class="btn large" id="melody3">Play Melody 3</a><br>
+    <a href="#" class="btn large" id="stop_drum">stop Drum</a><br>
+    <a href="#" class="btn large" id="stop_melody">stop Melody</a><br>
+    <a href="#" class="btn large" id="stop">Stop Playing</a><br>
+    
+   
+</body>
+</html>
