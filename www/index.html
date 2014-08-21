@@ -92,10 +92,23 @@
                         
                         setTimeout(function (event) {
                             
-                            drums.setVolume('0.5');
+                            //drums.setVolume('0.5');
                             melody3.setVolume('0.0');
                             melody.setVolume('0.0');
                         },2500);
+                        setTimeout(function (event) {
+                            
+                            //drums.setVolume('1.0');
+                            //melody3.setVolume('1.0');
+                            melody.setVolume('1.0');
+                        },3500);
+                        
+                        setTimeout(function (event) {
+                            
+                            //drums.setVolume('1.0');
+                            melody3.setVolume('1.0');
+                            //melody.setVolume('1.0');
+                        },4500);
                         
                         
                         
@@ -131,6 +144,18 @@
                         track3 = setTimeout(function (event) {
 
                            melody.play();
+                            //PGLowLatencyAudio.loop('drums');
+                            //PGLowLatencyAudio.loop('melody');
+                            //PGLowLatencyAudio.loop('melody2');
+                            //PGLowLatencyAudio.loop('melody3');
+                            //PGLowLatencyAudio.loop('drums2');
+
+                            $('#textTobeSearched').text(text);
+                        }, 100);
+                        
+                        track4 = setTimeout(function (event) {
+
+                           drums2.play();
                             //PGLowLatencyAudio.loop('drums');
                             //PGLowLatencyAudio.loop('melody');
                             //PGLowLatencyAudio.loop('melody2');
@@ -205,7 +230,7 @@
     <body>
     <style> a { font-family:Arial;line-height:45px; padding-left:10px; text-decoration:none; font-size:20px; border:1px solid #ddd; border-radius: 4px; width:250px; height:40px; display:block; margin-top:0px; }</style>
    
-    <a href="#" class="btn large" id="play">Drum, Mel 1, 2 & 3s</a><br>
+    <a href="#" class="btn large" id="play">Drum, Mel 1, 2</a><br>
     <a href="#" class="btn large" id="play2">Drum, Melody2</a><br>
     <a href="#" class="btn large" id="play3">drum2 & melody3</a><br>
     <a href="#" class="btn large" id="drum">Play Drums</a><br>
